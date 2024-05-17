@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Pixelated Clock</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    color: green;
+  }
+  #clock {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 40px;
+    font-weight: bold;
+  }
+  #date {
+    font-size: 20px;
+  }
+</style>
+</head>
+<body>
+<div id="clock"></div>
+<div id="date"></div>
+<script>
+  function updateTime() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    var time = hours + ":" + minutes + ":" + seconds;
+    document.getElementById("clock").textContent = time;
+  }
+  
+  function updateDate() {
+    var now = new Date();
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var date = now.toLocaleDateString('en-US', options);
+    document.getElementById("date").textContent = date;
+  }
+  
+  setInterval(updateTime, 1000);
+  updateDate();
+</script>
+</body>
+</html>
